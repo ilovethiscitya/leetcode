@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - word",
+            "request": "launch",
+            "mainClass": "word",
+            "projectName": "Testers_4c447461"
+        }
+    ]
+}
