@@ -9,16 +9,16 @@ public class windowSizeKSubarray {
         int i = 0;
         int j = 0;
         int size = 0;
-        int[] map = new int[26];
+        int[] map = new int[256];
         List<String> res = new ArrayList<>();
         while (j < letters.length()) {
-            if (map[letters.charAt(j) - 'a'] == 0) {
+            if (map[letters.charAt(j)] == 0) {
                 size++;
             }
-            map[letters.charAt(j)- 'a']++;
+            map[letters.charAt(j)]++;
             if (j >= k) {
-                map[letters.charAt(i) - 'a'] --;
-                if (map[letters.charAt(i) - 'a'] == 0) {
+                map[letters.charAt(i) ] --;
+                if (map[letters.charAt(i)] == 0) {
                     size--;
                 }
                 i++;
@@ -32,9 +32,9 @@ public class windowSizeKSubarray {
         return res;
     }
     public static void main(String[] args) {
-        String input = "adfgkg";
+        String input = "12123";
         windowSizeKSubarray w = new windowSizeKSubarray();
-        List<String> res = w.findWindowK(input, 4);
+        List<String> res = w.findWindowK(input, 2);
         for (String a : res) {
             System.out.println(a);
         }

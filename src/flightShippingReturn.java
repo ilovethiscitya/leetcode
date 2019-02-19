@@ -7,18 +7,6 @@ import java.util.*;
  */
 public class flightShippingReturn {
     public List<List<Integer>> findC(int travelDistance, List<List<Integer>> forward, List<List<Integer>> returnShipping) {
-//        List<List<Integer>> result = new ArrayList<>();
-//        List<Integer> res = new ArrayList<>();
-//        int forwardSize = forward.size();
-//        int returnSize = returnShipping.size();
-//        int i = 0;
-//        int j = 0;
-//        int
-//        while (i < forwardSize && j < returnSize) {
-//            List<Integer> forwardList = forward.get(i);
-//            List<Integer> returnList = returnShipping.get(j);
-//
-//        }
         TreeMap<Integer, List<Integer>> treeMap = new TreeMap<>();
         for(int i = 0; i < forward.size(); i++) {
             List<Integer> pair = forward.get(i);
@@ -33,41 +21,12 @@ public class flightShippingReturn {
             }
 
         }
-        int minDiff = Integer.MAX_VALUE;
         Map<Integer, List<List<Integer>>> map = new HashMap<>();
-        //        for(int i = 0; i < returnShipping.size(); i++) {
-//            List<Integer> returnPair = returnShipping.get(i);
-//            int returnIdx = returnPair.get(0);
-//            int returnDist = returnPair.get(1);
-//            Integer closestDist = treeMap.floorKey(travelDistance - returnDist);
-//            System.out.println(returnDist + ",");
-//            System.out.println(closestDist);
-//            List<Integer> closestIndex = treeMap.get(closestDist);
-//            int diff = Math.abs(travelDistance - returnDist - closestDist);
-//            if (diff <= minDiff) {
-//                minDiff = Math.min(diff, minDiff);
-//                if (!map.containsKey(minDiff)) {
-//                    List<List<Integer>> candidates = new ArrayList<>();
-//                    for (int j = 0; j < closestIndex.size(); j++) {
-//                        List<Integer> list = new ArrayList<>();
-//                        list.add(closestIndex.get(j));
-//                        list.add(returnIdx);
-//                        candidates.add(list);
-//
-//                    }
-//                    map.put(minDiff, candidates);
-//                } else {
-//                    List<List<Integer>> c = map.get(minDiff);
-//                    for (int j = 0; j < closestIndex.size(); j++) {
-//                        List<Integer> list = new ArrayList<>();
-//                        list.add(closestIndex.get(j));
-//                        list.add(returnIdx);
-//                        c.add(list);
-//                    }
-//                    map.put(minDiff, c);
-//                }
-//            }
         int diff = Integer.MAX_VALUE;
+        // sort the returnShipping
+        Collections.sort(returnShipping, (r1, r2) -> {
+            return r1.get(0) - r2.get(0);
+        });
         for(int i = 0; i < returnShipping.size(); i++) {
             List<Integer> returnPair = returnShipping.get(i);
             int returnIdx = returnPair.get(0);
@@ -101,7 +60,7 @@ public class flightShippingReturn {
 
 
 
-            System.out.println("this is" + diff);
+//            System.out.println("this is" + diff);
 
         }
         return map.get(diff);
@@ -130,10 +89,10 @@ public class flightShippingReturn {
         List<Integer> cc = Arrays.asList(new Integer[]{3,4000});
         List<Integer> dd = Arrays.asList(new Integer[]{4,5000});
 
-        returnF.add(aa);
+        returnF.add(dd);
         returnF.add(bb);
         returnF.add(cc);
-        returnF.add(dd);
+        returnF.add(aa);
 
         List<List<Integer>> res = new flightShippingReturn().findC(distance, forward, returnF);
         for(int i = 0; i < res.size(); i++) {
